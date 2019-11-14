@@ -17,6 +17,9 @@ client: deps
 
 assets: client-assets server-assets
 
+release-assets: BUILDTAGS=release
+release-assets: assets
+
 install-go-bindata:
 	GOOS="" GOARCH="" go get github.com/jteeuwen/go-bindata/go-bindata
 

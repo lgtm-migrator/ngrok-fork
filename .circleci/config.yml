@@ -1,0 +1,25 @@
+version: 2
+jobs:
+
+  test:
+    docker:
+      - image: circleci/golang:1.13
+
+    working_directory: ~/app
+    steps:
+      - checkout
+      - run: make release-assets
+      - run: go build --mod=vendor --tags="release" ngrok/main/ngrokd
+      - run: go build --mod=vendor --tags="release" ngrok/main/ngrok
+
+
+workflows:
+  version: 2
+  main:
+    jobs:
+      - test:
+          filters:
+            branches:
+              only: /.*/
+            tags:
+              ignore: /.*/

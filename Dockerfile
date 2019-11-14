@@ -9,6 +9,8 @@ RUN apk update && apk upgrade && \
 WORKDIR /app
 # copy sources
 COPY . .
+# make assets to go
+RUN make release-assets 
 # vendor build only can be executed outside the GOPATH
 RUN go build --mod=vendor --tags="release" ngrok/main/ngrokd
 
