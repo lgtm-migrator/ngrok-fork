@@ -1,16 +1,28 @@
-FROM ubuntu:14.04
+# build image
+FROM golang:1.13-alpine3.9 AS build-env
 
-ENV NGROK /opt/ngrok
-ENV DOMAIN ngrok.vps3.fornever.org
+# install build tools
+RUN apk update && apk upgrade && \
+    apk add --no-cache bash git openssh
 
-EXPOSE 80 443 4443
+# build
+WORKDIR /app
+# copy sources
+COPY . .
+# vendor build only can be executed outside the GOPATH
+RUN go build --mod=vendor --tags="release" ngrok/main/ngrokd
 
-COPY start.sh $NGROK/
-COPY ./ngrok-linux-amd64 $NGROK/ngrokd
-COPY ./openssl/server.crt $NGROK/server.crt
-COPY ./openssl/server.key $NGROK/server.key
+# distribution image
+FROM alpine:3.9
 
-RUN chmod +x $NGROK/ngrokd
-RUN chmod +x $NGROK/start.sh
+# add CAs
+RUN apk --no-cache add ca-certificates
 
-CMD $NGROK/start.sh
+COPY --from=build-env /app/ngrokd .
+
+COPY start.sh
+COPY ./openssl/server.crt
+COPY ./openssl/server.key
+
+# start
+CMD ["./cli"]
