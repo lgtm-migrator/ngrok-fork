@@ -3,7 +3,7 @@ FROM golang:1.13-alpine AS build-env
 
 # install build tools
 RUN apk update && apk upgrade && \
-    apk add --no-cache bash git openssh
+    apk add --no-cache bash git openssh make
 
 # build
 WORKDIR /app
