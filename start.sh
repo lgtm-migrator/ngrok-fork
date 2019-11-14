@@ -1,3 +1,3 @@
-#!/bin/bash
+#!/bin/sh
 
-ngrokd -tlsKey=./server.key -tlsCrt=./server.crt -domain="${DOMAIN}" -httpAddr=":80" -httpsAddr=":443"
+./ngrokd -tlsKey=./server.key -tlsCrt=./server.crt -domain="${DOMAIN}" -httpAddr=":80" -httpsAddr=":443"

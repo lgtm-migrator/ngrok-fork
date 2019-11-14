@@ -1,5 +1,5 @@
 # build image
-FROM golang:1.13-alpine3.9 AS build-env
+FROM golang:1.13-alpine AS build-env
 
 # install build tools
 RUN apk update && apk upgrade && \
@@ -13,16 +13,18 @@ COPY . .
 RUN go build --mod=vendor --tags="release" ngrok/main/ngrokd
 
 # distribution image
-FROM alpine:3.9
+FROM alpine
+
+WORKDIR /app
 
 # add CAs
 RUN apk --no-cache add ca-certificates
 
 COPY --from=build-env /app/ngrokd .
 
-COPY start.sh
-COPY ./openssl/server.crt
-COPY ./openssl/server.key
+ADD start.sh .
+ADD ./openssl/server.crt .
+ADD ./openssl/server.key .
 
 # start
-CMD ["./cli"]
+CMD ["./start.sh"]
