@@ -18,7 +18,7 @@ jobs:
 
     - name: Build
       working-directory: cli
-      run: base build_multi.sh
+      run: bash build_multi.sh
       
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0

@@ -9,5 +9,5 @@ This is a fork for ngrok
 expose with docker container
 
 ```bash
-docker run -d --restart=always -p 4080:80 -p 4444:443 -p 4443:4443 theosun/ngrok-fork
+docker run --name ngrok -d --restart=always -p 4080:80 -p 4444:443 -p 4443:4443 theosun/ngrok-fork
 ```
