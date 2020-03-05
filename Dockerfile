@@ -20,13 +20,12 @@ FROM alpine
 WORKDIR /app
 
 # add CAs
-RUN apk --no-cache add ca-certificates
+RUN apk --no-cache add ca-certificates openssl bash
 
 COPY --from=build-env /app/ngrokd .
 
+ADD generate_key_for_host.sh .
 ADD start.sh .
-ADD ./openssl/server.crt .
-ADD ./openssl/server.key .
 
 # start
 CMD ["./start.sh"]

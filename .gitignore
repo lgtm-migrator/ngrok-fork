@@ -3,3 +3,7 @@ bin/
 pkg/
 client/assets/
 server/assets/
+certs
+server.crt
+server.csr
+server.key
