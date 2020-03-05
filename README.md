@@ -4,11 +4,13 @@
 ![Snapshot Build](https://github.com/Soontao/ngrok-fork/workflows/Snapshot%20Build/badge.svg)
 ![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/theosun/ngrok-fork)
 
-This is a fork for ngrok, make its easier to use.
+This is a fork project for ngrok, make its easier to use.
 
 ## security alert
 
-For simplify the client build/usage, the **tls verify** logic will be skipped, please don't use this service to transfer sensitive/production data.
+**PLEASE READ THIS PARAGRAPH FIRSTLY, VERY IMPORTANT !!!**
+
+For simplify the client build/usage, the **tls verify** logic will be skipped, so your traffic is **in-secure**, please DO NOT use this service to transfer sensitive/production data.
 
 ## client setup
 
