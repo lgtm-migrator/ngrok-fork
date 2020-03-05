@@ -1,6 +1,6 @@
 #!/bin/bash
 
-make assets
+make release-assets
 
 export GOOS=linux GOARCH=amd64
 go build -o "bin/${PWD##*/}-${GOOS}-${GOARCH}" -tags "release" ngrok/main/ngrok
