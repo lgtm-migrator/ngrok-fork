@@ -1,4 +1,4 @@
-# <img src="https://res.cloudinary.com/digf90pwi/image/upload/v1583393648/tunnel_ayuioe.png" height="20px"/> ngrok project
+# <img src="https://res.cloudinary.com/digf90pwi/image/upload/v1583393648/tunnel_ayuioe.png" height="25px"/> ngrok project
 
 [![CircleCI](https://circleci.com/gh/Soontao/ngrok-fork.svg?style=shield)](https://circleci.com/gh/Soontao/ngrok-fork)
 ![Snapshot Build](https://github.com/Soontao/ngrok-fork/workflows/Snapshot%20Build/badge.svg)
@@ -8,7 +8,7 @@ This is a fork for ngrok, make its easier to use.
 
 ## security alert
 
-For simplify the client building, the **tls verify** logic will be skipped, please don't use this service to transfer sensitive/production data.
+For simplify the client build/usage, the **tls verify** logic will be skipped, please don't use this service to transfer sensitive/production data.
 
 ## client setup
 
