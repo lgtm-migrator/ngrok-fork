@@ -2,6 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/Soontao/ngrok-fork.svg?style=shield)](https://circleci.com/gh/Soontao/ngrok-fork)
 ![Snapshot Build](https://github.com/Soontao/ngrok-fork/workflows/Snapshot%20Build/badge.svg)
+![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/theosun/ngrok-fork)
 
 This is a fork for ngrok, make its easier to use.
 
