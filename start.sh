@@ -1,4 +1,5 @@
 #!/bin/sh
+# the entrypoint for docker image
 
 if [ ! -f "./server.crt" ]; then
     echo "cert not exist, create server cert first"
