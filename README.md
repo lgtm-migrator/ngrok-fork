@@ -28,6 +28,8 @@ ngrok --serveraddr your_host_domain.com:4443 81
   * format: server_domain:transfer_port, default, the transfer port should be `4443` 
 * the second parameter `81` is your local service port
 
+another way: just run `docker build -t ngrok -f client.Dockerfile .` to build ngrok client image
+
 ## server setup
 
 run following command in your server

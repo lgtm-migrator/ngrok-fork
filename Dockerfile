@@ -19,7 +19,6 @@ FROM alpine
 
 WORKDIR /app
 
-# add CAs
 RUN apk --no-cache add ca-certificates openssl bash
 
 COPY --from=build-env /app/ngrokd .
