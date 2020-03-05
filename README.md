@@ -12,6 +12,8 @@ This is a fork project for ngrok, make its easier to use.
 
 To simplify the client build/usage, the **tls verify** logic will be skipped, so your traffic is **in-secure**, please DO NOT use this service to transfer sensitive/production data.
 
+The server will generate self-signed ssl cert as tls encryption cert, and client will accept to connect all ssl certs so user doesn't need to build the client/server again & again.
+
 ## client setup
 
 download binary from [snapshot build](https://github.com/Soontao/ngrok-fork/actions?query=workflow%3A%22Snapshot+Build%22)
@@ -23,6 +25,7 @@ ngrok --serveraddr your_host_domain.com:4443 81
 ```
 
 * the **serveraddr** is mandatory for your own server
+  * format: server_domain:transfer_port, default, the transfer port should be `4443` 
 * the second parameter `81` is your local service port
 
 ## server setup
@@ -38,9 +41,14 @@ docker run --name ngrokd -d --restart=always -p 4080:80 -p 4443:4443 -e DOMAIN=y
     * your_host_domain.com -> your server ip
     * *.your_host_domain.com -> your server ip
 * port 4080 http port
-* port 4443 ngrok transfer port
+* port 4443 ngrok transfer port, the client users need to get this port to setup their tunnels
 * setup reverse proxy 
 
+## get a wildcard cert for your domain
+
+(first of first, you should have your own domain)
+
+just ref [this doc](https://github.com/Soontao/ngrok-fork/wiki/Create-Let's-Encrypt-wildcard-cert) 
 
 ## server example reverse proxy config (for caddy server v1)
 
@@ -51,11 +59,13 @@ docker run --name ngrokd -d --restart=always -p 4080:80 -p 4443:4443 -e DOMAIN=y
     transparent
     websocket
   }
-  tls certpath certkeypath
+  tls wildcardcertpath wildcardcertkeypath
 }
 ```
 
 for other server like `nginx`, you can find many many docs from search engine.
+
+
 
 ## Icon
 
