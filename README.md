@@ -10,7 +10,7 @@ This is a fork project for ngrok, make its easier to use.
 
 **PLEASE READ THIS PARAGRAPH FIRSTLY, VERY IMPORTANT !!!**
 
-For simplify the client build/usage, the **tls verify** logic will be skipped, so your traffic is **in-secure**, please DO NOT use this service to transfer sensitive/production data.
+To simplify the client build/usage, the **tls verify** logic will be skipped, so your traffic is **in-secure**, please DO NOT use this service to transfer sensitive/production data.
 
 ## client setup
 
