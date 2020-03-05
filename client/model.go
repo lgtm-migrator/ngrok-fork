@@ -20,8 +20,9 @@ import (
 	metrics "github.com/rcrowley/go-metrics"
 )
 
+var defaultServerAddr string
+
 const (
-	defaultServerAddr   = "frp.never-for-never.com:4443"
 	pingInterval        = 20 * time.Second
 	maxPongLatency      = 15 * time.Second
 	updateCheckInterval = 6 * time.Hour
@@ -101,15 +102,8 @@ func newClientModel(config *Configuration, ctl mvc.Controller) *ClientModel {
 	}
 
 	// configure TLS
-	if config.TrustHostRootCerts {
-		m.Info("Trusting host's root certificates")
-		m.tlsConfig = &tls.Config{}
-	} else {
-		m.Info("Trusting root CAs: %v", rootCrtPaths)
-		var err error
-		if m.tlsConfig, err = LoadTLSConfig(rootCrtPaths); err != nil {
-			panic(err)
-		}
+	m.tlsConfig = &tls.Config{
+		InsecureSkipVerify: true, // skip tls verify
 	}
 
 	// configure TLS SNI

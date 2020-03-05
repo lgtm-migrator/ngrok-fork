@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# this is a automatic cert generate script
+
 openssl genrsa -out server.key 2048
 openssl rsa -in server.key -out server.key
 openssl req -sha256 -new -key server.key -out server.csr -subj "/CN=$1"

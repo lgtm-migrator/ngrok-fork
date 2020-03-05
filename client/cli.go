@@ -34,16 +34,17 @@ Examples:
 `
 
 type Options struct {
-	config    string
-	logto     string
-	loglevel  string
-	authtoken string
-	httpauth  string
-	hostname  string
-	protocol  string
-	subdomain string
-	command   string
-	args      []string
+	config     string
+	logto      string
+	loglevel   string
+	authtoken  string
+	httpauth   string
+	hostname   string
+	protocol   string
+	subdomain  string
+	command    string
+	serveraddr string
+	args       []string
 }
 
 func ParseArgs() (opts *Options, err error) {
@@ -93,18 +94,24 @@ func ParseArgs() (opts *Options, err error) {
 		"http+https",
 		"The protocol of the traffic over the tunnel {'http', 'https', 'tcp'} (default: 'http+https')")
 
+	serveraddr := flag.String(
+		"serveraddr",
+		defaultServerAddr,
+		"the server address, format hostname:port like your_server_host.com:4443")
+
 	flag.Parse()
 
 	opts = &Options{
-		config:    *config,
-		logto:     *logto,
-		loglevel:  *loglevel,
-		httpauth:  *httpauth,
-		subdomain: *subdomain,
-		protocol:  *protocol,
-		authtoken: *authtoken,
-		hostname:  *hostname,
-		command:   flag.Arg(0),
+		config:     *config,
+		logto:      *logto,
+		loglevel:   *loglevel,
+		httpauth:   *httpauth,
+		subdomain:  *subdomain,
+		protocol:   *protocol,
+		authtoken:  *authtoken,
+		hostname:   *hostname,
+		command:    flag.Arg(0),
+		serveraddr: *serveraddr,
 	}
 
 	switch opts.command {
