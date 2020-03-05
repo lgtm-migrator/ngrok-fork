@@ -12,7 +12,7 @@ This is a fork project for ngrok, make its easier to use.
 
 To simplify the client build/usage, the **tls verify** logic will be skipped, so your traffic is **in-secure**, please DO NOT use this service to transfer sensitive/production data.
 
-The server will generate self-signed ssl cert as tls encryption cert, and client will accept to connect all ssl certs so user doesn't need to build the client/server again & again.
+The server will generate a **self-signed** ssl cert as its tls encryption cert, and client will connect to server without ssl chain verify, so user doesn't need to build the client/server again & again.
 
 ## client setup
 
