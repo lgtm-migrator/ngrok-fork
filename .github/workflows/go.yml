@@ -17,7 +17,9 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Build
-      run: bash build_multi.sh
+      run: |
+        export PATH=$PATH:$(go env GOPATH)/bin
+        bash build_multi.sh
       
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0

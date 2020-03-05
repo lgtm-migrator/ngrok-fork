@@ -21,7 +21,7 @@ release-assets: BUILDTAGS=release
 release-assets: assets
 
 install-go-bindata:
-	GOOS="" GOARCH="" go get github.com/jteeuwen/go-bindata/go-bindata
+	GOOS="" GOARCH="" go get -u github.com/jteeuwen/go-bindata/...
 
 client-assets: install-go-bindata
 	go-bindata -nomemcopy -pkg=assets -tags=$(BUILDTAGS) \
