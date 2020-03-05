@@ -3,7 +3,6 @@ package client
 import (
 	"crypto/tls"
 	"fmt"
-	metrics "github.com/rcrowley/go-metrics"
 	"io/ioutil"
 	"math"
 	"ngrok/client/mvc"
@@ -17,10 +16,12 @@ import (
 	"strings"
 	"sync/atomic"
 	"time"
+
+	metrics "github.com/rcrowley/go-metrics"
 )
 
 const (
-	defaultServerAddr   = "ngrok.vps3.fornever.org:4443"
+	defaultServerAddr   = "frp.never-for-never.com:4443"
 	pingInterval        = 20 * time.Second
 	maxPongLatency      = 15 * time.Second
 	updateCheckInterval = 6 * time.Hour

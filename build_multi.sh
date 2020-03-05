@@ -1,5 +1,6 @@
 #!/bin/bash
 
+make assets
 make release-all
 
 export GOOS=linux GOARCH=amd64
