@@ -1,5 +1,6 @@
 #!/bin/bash
 
+make install-go-bindata
 make assets
 make release-all
 
