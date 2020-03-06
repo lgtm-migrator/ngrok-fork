@@ -14,7 +14,7 @@ To simplify the ngrok client build/usage, the **tls verify** logic will be skipp
 
 The server will generate a **self-signed** ssl cert as its tls encryption cert, and client will connect to server without ssl chain verify (but still transfer data under tls protection), in this solution, the users of self hosted service doesn't need to build the client/server again and again.
 
-## client install & usage
+## Client install & Usage
 
 download binary from [snapshot build](https://github.com/Soontao/ngrok-fork/actions?query=workflow%3A%22Snapshot+Build%22)
 
