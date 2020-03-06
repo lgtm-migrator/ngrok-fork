@@ -6,15 +6,15 @@
 
 This is a fork project for ngrok, make its easier to use.
 
-## security alert
+## SECURITY ALERT
 
-**PLEASE READ THIS PARAGRAPH FIRSTLY, VERY IMPORTANT !!!**
+**PLEASE READ THIS PARAGRAPH FIRST, VERY IMPORTANT !!!**
 
-To simplify the client build/usage, the **tls verify** logic will be skipped, so your traffic is **in-secure**, please DO NOT use this service to transfer sensitive/production data.
+To simplify the ngrok client build/usage, the **tls verify** logic will be skipped, so your traffic is **in-secure**, please **DO NOT** use this service to transfer sensitive/production data.
 
-The server will generate a **self-signed** ssl cert as its tls encryption cert, and client will connect to server without ssl chain verify, so user doesn't need to build the client/server again & again.
+The server will generate a **self-signed** ssl cert as its tls encryption cert, and client will connect to server without ssl chain verify (but still transfer data under tls protection), in this solution, the users of self hosted service doesn't need to build the client/server again and again.
 
-## client setup
+## client install & usage
 
 download binary from [snapshot build](https://github.com/Soontao/ngrok-fork/actions?query=workflow%3A%22Snapshot+Build%22)
 
@@ -25,12 +25,15 @@ ngrok --serveraddr self_host_domain.com:4443 81
 ```
 
 * the **serveraddr** is mandatory for your own server
-  * format: server_domain:transfer_port, default, the transfer port should be `4443` 
+  * format: `self_host_domain:transfer_port`, defaultly, the transfer port should be `4443`
+  * your service provider will tell you the `serviceaddr`
 * the second parameter `81` is your local service port
+  * format is same with `serviceaddr`
+  * you can expose any services in your local network like `192.168.3.24:3000`
 
 another way: just run `docker build -t ngrok -f client.Dockerfile .` to build ngrok client image
 
-## server setup
+## Server setup
 
 run following command in your server
 
@@ -47,13 +50,13 @@ docker run --name ngrokd -d --restart=always -p 4080:80 -p 4443:4443 -e DOMAIN=s
 * port 4443, the ngrok transfer port, the client users need to get this port to setup their tunnels
 * setup reverse proxy for the ngrok http service port
 
-## get a wildcard cert for your domain
+### Get a wildcard cert for your domain
 
 (first of first, you should have your own domain)
 
 just ref [this doc](https://github.com/Soontao/ngrok-fork/wiki/Create-Let's-Encrypt-wildcard-cert) 
 
-## server example reverse proxy config (for caddy server v1)
+### Server example reverse proxy config (for caddy server v1)
 
 ```conf
 *.your_host_domain:443 {
