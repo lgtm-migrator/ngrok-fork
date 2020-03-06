@@ -21,7 +21,7 @@ download binary from [snapshot build](https://github.com/Soontao/ngrok-fork/acti
 then start your tunnel with command
 
 ```bash
-ngrok --serveraddr your_host_domain.com:4443 81
+ngrok --serveraddr self_host_domain.com:4443 81
 ```
 
 * the **serveraddr** is mandatory for your own server
@@ -33,16 +33,17 @@ ngrok --serveraddr your_host_domain.com:4443 81
 run following command in your server
 
 ```bash
-docker run --name ngrokd -d --restart=always -p 4080:80 -p 4443:4443 -e DOMAIN=your_host_domain.com theosun/ngrok-fork
+docker run --name ngrokd -d --restart=always -p 4080:80 -p 4443:4443 -e DOMAIN=self_host_domain.com theosun/ngrok-fork
 ```
 
+* you must create domain & sub-domain DNS records for your server firstly
+  * self_host_domain.com    -> your server ip
+  * *.self_host_domain.com  -> your server ip
 * **the DOMAIN environment variable is mandatory**
-  * you must point the domain & sub domain to your server
-    * your_host_domain.com -> your server ip
-    * *.your_host_domain.com -> your server ip
-* port 4080 http port
-* port 4443 ngrok transfer port, the client users need to get this port to setup their tunnels
-* setup reverse proxy 
+  * DOMAIN env should be the root domain of your server, like `self_host_domain.com`
+* port 4080, the http service port
+* port 4443, the ngrok transfer port, the client users need to get this port to setup their tunnels
+* setup reverse proxy for the ngrok http service port
 
 ## get a wildcard cert for your domain
 
